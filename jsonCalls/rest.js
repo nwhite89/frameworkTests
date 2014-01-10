@@ -1,4 +1,4 @@
-var stats = [
+var metrics = [
     {
         id: 1,
         name: 'AOL Placement',
@@ -63,3 +63,4 @@ var stats = [
         ]
     }
 ];
+
