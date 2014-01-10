@@ -3,7 +3,7 @@
         <tr>
             <th>&nbsp;</th>
             <%
-            _.each(stats[0].stats, function (statsItem, statsKey, statsList) {
+            _.each(stats.get(1).attributes.stats, function (statsItem, statsKey, statsList) {
             %>
                 <th class="<%-statsItem.name%>"><%-statsItem.title%></th>
             <%
@@ -13,14 +13,14 @@
     </thead>
     <tbody>
         <%
-        _.each(stats, function (statsItem, statsKey, statsList) {
+        stats.each(function (statsItem, statsKey, statsList) {
         %>
             <tr>
-                <td><%- statsItem.name %></td>
+                <td><%- statsItem.get('name') %></td>
         <%
-            _.each(statsItem.stats, function (item, key, list) {
+            _.each(statsItem.get('stats'), function (item, key, list) {
             %>
-                <td><%- item.total %></td>
+                <td><%- item.total %></tdstats>
             <%
             });
         %>

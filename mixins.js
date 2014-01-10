@@ -2,7 +2,7 @@ _.mixin({
     /**
      * Get a template via AJAX and store within cache to ensure not getting the
      * same template multiple times to prevent needless requests
-     * @param  {String} url      Destination of the template being requested
+     * @param  {Strinvg} url      Destination of the template being requested
      * @param  {Object} data     Data to pass through the template
      * @param  {Object} settings Any extra settings for the underscore
      *                           templating engine to use
