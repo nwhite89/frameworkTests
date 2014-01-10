@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>JS Framework tests</title>
+    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="mixins.js"></script>
+    <script type="text/javascript" src="bower_components/backbone/backbone-min.js"></script>
+    <script type="text/javascript" src="jsonCalls/rest.js"></script>
 </head>
 <body>
 
+<div id="target"></div>
+
+<script>
+var tmpl;
+    $(function() {
+        $('#target').html(_.templateFromUrl('templates/metricsList.html.tpl', stats));
+    });
+</script>
 </body>
 </html>
