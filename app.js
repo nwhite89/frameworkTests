@@ -1,60 +1,50 @@
+window.rockabox = window.rockabox || {};
+rockabox.reporting = rockabox.reporting || {};
 
-var UserTracker = new Backbone.Marionette.Application();
+var reporting = rockabox.reporting;
 
-var User = Backbone.Model.extend({});
-var Users = Backbone.Collection.extend({
-    model: User
+reporting.app = new Backbone.Marionette.Application();
+
+reporting.stat = Backbone.Model.extend({});
+reporting.stats = Backbone.Collection.extend({
+    model: reporting.stat
 });
 
-var UserView = Backbone.Marionette.ItemView.extend({
-    template: '#userView',
-    events: {
-        'click button': 'removeExistingUser'
-    },
-    removeExistingUser: function () {
-        this.model.destroy();
+reporting.views = reporting.views || {};
+reporting.views.statView = Backbone.Marionette.ItemView.extend({
+    template: '#statView',
+    tagName: 'tr',
+    className: 'stat'
+});
+
+reporting.views.noStatView = Backbone.Marionette.ItemView.extend({
+    template: '#noStatView'
+});
+
+reporting.collection = new reporting.stats(metrics);
+
+reporting.views.stats = Backbone.Marionette.CompositeView.extend({
+    template: '#statsView',
+    tagName: 'table',
+
+    itemView: reporting.views.statView,
+
+    emptyView: reporting.views.noStatView,
+
+    refresh: function () {
+        this.render();
     }
 });
 
-var NoUsersView = Backbone.Marionette.ItemView.extend({
-    template: '#noUsersView'
+reporting.regions = reporting.regions || {};
+reporting.regions.list = new Backbone.Marionette.Region({
+    el: '#list'
 });
 
-var UsersView = Backbone.Marionette.CollectionView.extend({
-    itemView: UserView,
-    emptyView: NoUsersView
+var collection = new reporting.stats(metrics);
+var view = new reporting.views.stats({
+    collection: collection
 });
 
-var FormView = Backbone.Marionette.ItemView.extend({
-    template: '#formView',
-    events: {
-        'click button': 'createNewUser'
-    },
-    ui: {
-        name: '#name',
-        age: '#age'
-    },
-    createNewUser: function () {
-        this.collection.add({
-            name: this.ui.name.val(),
-            age: this.ui.age.val()
-        });
 
-        this.ui.name.val('');
-        this.ui.age.val('');
-    }
-});
-
-UserTracker.addRegions({
-    form: '#form',
-    list: '#list'
-});
-
-UserTracker.addInitializer(function () {
-    UserTracker.users = new Users();
-
-    UserTracker.form.show( new FormView({ collection: UserTracker.users }));
-    UserTracker.list.show( new UsersView({ collection: UserTracker.users }));
-});
-
-UserTracker.start();
+reporting.regions.list.show(view);

@@ -6,38 +6,50 @@
 </head>
 <body>
 
-<div id="form"></div>
 <div id="list"></div>
 
-<script id="formView" type="text/template">
-    <h2> New User </h2>
-    <p> Name: <input type="text" id="name" /> </p>
-    <p> Age: <input type="text" id="age" /> </p>
-    <p><button>Create</button></p>
+
+<script id="statsView" type="text/template">
+    <thead>
+        <tr>
+           <th>&nbsp;</th>
+           <%
+           _.each(this.collection.models[0].attributes.stats, function (statsItem, statsKey, statsList) {
+            %>
+            <th class="<%-statsItem.name%>"><%-statsItem.title%></th>
+            <%
+        });
+           %>
+       </tr>
+   </thead>
+   <tbody>
+   </tbody>
 </script>
 
-<script id="userView" type="text/template">
-    <div>
-        <p>
-            Name: <%= name %> <br />
-            Age: <%= age %> <button> Delete </button>
-        </p>
-    </div>
+<script id="statView" type="text/template">
+    <td><%= name %></td>
+    <%
+    _.each(stats, function (item, key, list) {
+        %>
+        <td><%= item.total %></td>
+        <%
+    });
+    %>
 </script>
 
-<script id="usersView" type="text/template">
-    <h2> Users </h2>
+<script id="noStatView" type="text/template">
+    <h2> Currently there are no stats available </h2>
 </script>
 
-<script id="noUsersView" type="text/template">
-    <h2> No Users </h2>
-</script>
+
+
 
 <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
 <script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
 <script type="text/javascript" src="bower_components/marionette/public/javascripts/backbone.js"></script>
 <script type="text/javascript" src="bower_components/marionette/lib/backbone.marionette.min.js"></script>
+<script type="text/javascript" src="jsonCalls/rest.js"></script>
 <script type="text/javascript" src="app.js"></script>
 
 </body>

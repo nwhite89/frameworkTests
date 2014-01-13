@@ -1,4 +1,4 @@
-var stats = [
+var metrics = [
     {
         columns: [
             {
