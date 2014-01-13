@@ -1,4 +1,4 @@
-var stats = [
+[
     {
         id: 1,
         name: 'AOL Placement',
@@ -62,4 +62,4 @@ var stats = [
             }
         ]
     }
-];
+]

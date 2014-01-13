@@ -1,0 +1,68 @@
+<!doctype html>
+<html ng-app="stats">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Shizz</title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">Home</a>
+    <section>
+        <h2>Hide/Show</h2>
+        <div>
+            <label for="tired">Tired?</label>
+            <input id="tired" type="checkbox" ng-model="tired_check"/>
+        </div>
+        <div ng-show="tired_check">
+            Get some fucking coffee!
+        </div>
+    </section>
+    <hr>
+    <section>
+        <h2>Repeat</h2>
+        <div ng-controller="PokemonList">
+            <input id="pokemon" type="search"
+                   ng-model="poke_search" placeholder="Search Pokemon.."/>
+            <ul>
+                <li ng-repeat="pm in pokemon | filter:poke_search">
+                    <span>{{ pm }}</span>
+                    <button ng-click="remove($index)">x</button>
+                </li>
+            </ul>
+            <div>
+                <h3>New Pokemon</h3>
+                <label>Name:</label>
+                <input ng-model="new_pokemon"/>
+                <button ng-click="add()">Add</button>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section>
+        <div ng-controller="ReportStats">
+            <h2>Overview</h2>
+            <input type="search" ng-model="ss" placeholder="Search stats.."/>
+            <table>
+                <tr ng-show="$first" ng-repeat="stat in stats">
+                    <th>Placement</th>
+                    <th ng-repeat="(k, s) in stat">{{ k }}</th>
+                </tr>
+                <tr ng-repeat="(key, stat) in stats | filter:ss">
+                    <td>{{ key }}</td>
+                    <td ng-repeat="s in stat ">{{ s }}</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <script src="bower_components/angular/angular.js"
+            type="text/javascript"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"
+            type="text/javascript"></script>
+    <script src="js/angular/angular-example.js"></script>
+</body>
+</html>
