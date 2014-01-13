@@ -6,5 +6,51 @@
 </head>
 <body>
 
+<div id="list"></div>
+
+
+<script id="statsView" type="text/template">
+    <thead>
+        <tr>
+           <th>&nbsp;</th>
+           <%
+           _.each(this.collection.models[0].attributes.stats, function (statsItem, statsKey, statsList) {
+            %>
+            <th class="<%-statsItem.name%>"><%-statsItem.title%></th>
+            <%
+        });
+           %>
+       </tr>
+   </thead>
+   <tbody>
+   </tbody>
+</script>
+
+<script id="statView" type="text/template">
+    <td><%= name %></td>
+    <%
+    _.each(stats, function (item, key, list) {
+        %>
+        <td><%= item.total %></td>
+        <%
+    });
+    %>
+</script>
+
+<script id="noStatView" type="text/template">
+    <h2> Currently there are no stats available </h2>
+</script>
+
+
+
+
+<script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+<script type="text/javascript" src="bower_components/marionette/public/javascripts/backbone.js"></script>
+<script type="text/javascript" src="bower_components/marionette/lib/backbone.marionette.min.js"></script>
+<script type="text/javascript" src="jsonCalls/rest.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
 </body>
 </html>
