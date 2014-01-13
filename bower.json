@@ -3,13 +3,18 @@
   "version": "0.0.1",
   "homepage": "https://github.com/nwhite89/frameworkTests",
   "authors": [
-    "Nick White <nick.white@rockabox.com>"
+    "Nick White <nick.white@rockabox.com>",
+    "NOJ <jon.man@rockabox.com>"
   ],
   "description": "Test Frameworks",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "jquery": "1.8.3",
-    "bootstrap": "2.3.2"
+    "bootstrap": "2.3.2",
+    "underscore": "1.5.2",
+    "backbone": "1.1.0",
+    "angular": "1.2.8",
+    "angular-resource": "1.2.8"
   }
 }

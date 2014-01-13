@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Backbone Shizz</title>
+    <script src="bower_components/jquery/jquery.js" type="text/javascript"></script>
+    <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+    <script src="bower_components/backbone/backbone.js" type="text/javascript"></script>
+</head>
+<body>
+<a href="index.html">Home</a>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var Stat = Backbone.Model.extend({});
+
+        var StatView = Backbone.View.extend({
+            render: function() {
+                this.el = this.model.toJSON();
+                return this;
+            }
+        });
+
+        var StatCollection = Backbone.Collection.extend({
+            model: Stat,
+            url: 'json/django-rest.json'
+        });
+
+        var Main = Backbone.View.extend({
+            initialize: function() {
+                this.stats = new StatCollection();
+                this.stats.fetch();
+            },
+            render: function() {
+                this.stats.each(function(stat) {
+                }, this);
+                return this;
+            }
+        });
+
+        var app = new Main();
+        app.render();
+    });
+</script>
+</body>
+</html>
