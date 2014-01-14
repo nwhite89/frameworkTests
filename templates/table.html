@@ -1,0 +1,36 @@
+<div>
+    <div>
+        <input placeholder="Search:" type="text" ng-model="query">
+    </div>
+
+    <p>
+        Total number of phones: {{ metrics.length }}
+    </p>
+
+    <table id="stats">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th ng-repeat="metric in metrics[0].stats">
+                    {{ metric.title }}
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="metric in metrics | filter:query">
+                <td>{{ metric.name }}</td>
+                <td ng-repeat="stat in metric.stats" style="text-align: center;">
+                    {{ stat.total }}
+                 </td>
+                 <td>
+                    <button ng-click="remove($index);">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a href="#/add">Add</a>
+    </div>
+</div>
