@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JS Framework tests</title>
+    <title>JS Framework tests {{ query }}</title>
+    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="jsonCalls/rest.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
+
+    <div ng-app="reportingApp">
+        <h1>Reporting Metrics</h1>
+        <div ng-view></div>
+    </div>
 
 </body>
 </html>
